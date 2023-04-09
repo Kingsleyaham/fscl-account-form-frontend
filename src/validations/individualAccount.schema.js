@@ -1,4 +1,4 @@
-import { date, object, string, setLocale, mixed } from "yup";
+import { date, object, string, setLocale, mixed, array, number } from "yup";
 import { parse, isDate, differenceInYears } from "date-fns";
 
 // const message = "field is required";
@@ -12,25 +12,12 @@ setLocale({
 });
 
 export const individualAccountSchema = object({
-  photo: mixed()
-    .nullable()
-    .required()
-    .test("file size", "File size too large", (value) => {
-      // value && value[0].size <= 1048576;
-      console.log(value);
-    })
-    .test(
-      "file format",
-      "Invalid file format",
-      (value) => value && supportedFormat.includes(value[0].type)
-    )
-    .label("Photo"),
   title: string().required(),
-  firstName: string().required().trim().label("First Name"),
-  middleName: string().nullable().trim().label("Middle Name"),
+  firstName: string().required().trim().label("firstname"),
+  middleName: string().nullable().trim().label("middlename"),
   surname: string().required().trim(),
   gender: string().required(),
-  maritalStatus: string().required().label("Marital Status"),
+  maritalStatus: string().required().label("marital status"),
   dateOfBirth: date()
     .transform((value, originalValue) => {
       const parsedDate = isDate(originalValue)
@@ -58,7 +45,7 @@ export const individualAccountSchema = object({
   contactAddress: string().required().label("Contact Address"),
   postalAddress: string().required().label("Postal Address"),
   mobileNumber: string().required().label("Mobile Number"),
-  email: string().required(),
+  email: string().required().email("Invalid Email address").trim(),
 
   //   employment details
   employmentStatus: string().required().label("Employment Status"),
@@ -147,7 +134,11 @@ export const individualAccountSchema = object({
     .trim()
     .label("Investment Mobile Number"),
 
-  investEmail: string().required().trim().label("Investment Email Address"),
+  investEmail: string()
+    .required()
+    .trim()
+    .email("Invalid Investment Email address")
+    .label("Investment Email Address"),
 
   // Bank Account Details
   accountName: string().required().trim().label("Account Name"),
@@ -167,51 +158,127 @@ export const individualAccountSchema = object({
     .max(new Date())
     .required()
     .label("Account Open Date"),
-  bvn: string().required().trim().label("Bvn"),
+  bvn: string()
+    .required()
+    .trim()
+    .label("Bvn")
+    .length(11, "Invalid Bank Verification No"),
+
+  // Authorized Persons
+  authorizedPerson: array().of(
+    object().shape({
+      name: string().required().trim().min(3, "signatory name too short"),
+      address: string().required().trim(),
+      mobileNum: string().required().trim(),
+      email: string().email("Invalid Email address").required().trim(),
+      bvn: string().required().length(11, "Invalid Bank Verification No"),
+      identification: string().required().trim(),
+      passport: mixed()
+        .test(
+          "required",
+          "Passport Photo is required",
+          (value) => value.length > 0
+        )
+        .test(
+          "file format",
+          "Invalid file format",
+          (value) => value.length && supportedFormat.includes(value[0].type)
+        )
+        .test(
+          "file size",
+          "File size too large",
+          (value) => value.length && value[0].size <= 1048576
+        ),
+      signature: mixed()
+        .test("required", "Signature is required", (value) => value.length > 0)
+        .test(
+          "file format",
+          "Invalid file format",
+          (value) => value.length && supportedFormat.includes(value[0].type)
+        )
+        .test(
+          "file size",
+          "File size too large",
+          (value) => value.length && value[0].size <= 1048576
+        ),
+    })
+  ),
+
+  // Signatory Mandate
+  signatory: array().of(
+    object().shape({
+      name: string().required().trim().min(3, "signatory name too short"),
+      designation: string().required().trim(),
+      class: string().required().trim(),
+      signature: mixed()
+        .test("required", "Signature is required", (value) => value.length > 0)
+        .test(
+          "file format",
+          "Invalid file format",
+          (value) => value.length && supportedFormat.includes(value[0].type)
+        )
+        .test(
+          "file size",
+          "File size too large",
+          (value) => value.length && value[0].size <= 1048576
+        ),
+    })
+  ),
 
   // Kyc documents
   utilityBill: mixed()
-    .nullable()
-    .required()
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value && value[0].size <= 1048576
-    )
+    .test("required", "Utility Bill is required", (value) => value.length > 0)
     .test(
       "file format",
       "Invalid file format",
-      (value) => value && supportedFormat.includes(value[0].type)
+      (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .label("Utility Bill"),
+    .test(
+      "file size",
+      "File size too large",
+      (value) => value.length && value[0].size <= 1048576
+    ),
 
   identityUpload: mixed()
-    .nullable()
-    .required()
     .test(
-      "file size",
-      "File size too large",
-      (value) => value && value[0].size <= 1048576
+      "required",
+      "Identification document is required",
+      (value) => value.length > 0
     )
     .test(
       "file format",
       "Invalid file format",
-      (value) => value && supportedFormat.includes(value[0].type)
+      (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .label("Means of Idenfication"),
+    .test(
+      "file size",
+      "File size too large",
+      (value) => value.length && value[0].size <= 1048576
+    ),
 
   signatureUpload: mixed()
-    .nullable()
-    .required()
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value && value[0].size <= 1048576
-    )
+    .test("required", "Signature is required", (value) => value.length > 0)
     .test(
       "file format",
       "Invalid file format",
-      (value) => value && supportedFormat.includes(value[0].type)
+      (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .label("Signature"),
+    .test(
+      "file size",
+      "File size too large",
+      (value) => value.length && value[0].size <= 1048576
+    ),
+
+  passportPhoto: mixed()
+    .test("required", "Passport Photo is required", (value) => value.length > 0)
+    .test(
+      "file format",
+      "Invalid file format",
+      (value) => value.length && supportedFormat.includes(value[0].type)
+    )
+    .test(
+      "file size",
+      "File size too large",
+      (value) => value.length && value[0].size <= 1048576
+    ),
 });

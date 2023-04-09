@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import AuthorizedPersons from "../components/account/AuthorizedPersons";
 import BankAccountDetails from "../components/account/BankAccountDetails";
 import ContactAddress from "../components/account/ContactAddress";
@@ -21,12 +21,62 @@ const IndividualAccount = () => {
     handleSubmit,
     register,
     setValue,
+    control,
   } = useForm({
     resolver: yupResolver(individualAccountSchema),
+    defaultValues: {
+      signatory: [{ name: "", designation: "", class: "", signature: [] }],
+      authorizedPerson: [
+        {
+          name: "",
+          address: "",
+          mobileNum: "",
+          email: "",
+          bvn: "",
+          identification: "",
+          passport: [],
+          signature: [],
+        },
+      ],
+    },
+  });
+
+  const {
+    fields: signatoryList,
+    append: appendSignatory,
+    remove: removeSiginatory,
+  } = useFieldArray({
+    control,
+    name: "signatory",
+  });
+
+  const {
+    fields: authorizedList,
+    append: appendAuthorized,
+    remove: removeAuthorized,
+  } = useFieldArray({
+    control,
+    name: "authorizedPerson",
   });
 
   useEffect(() => {
-    if (!(Object.keys(errors).length === 0)) alertErrors(errors, toast);
+    if (!(Object.keys(errors).length === 0)) {
+      const { signatory, authorizedPerson, ...newErrors } = errors;
+
+      if (errors.signatory) {
+        newErrors.signatory = {
+          message: "Signatory Mandate fields are required",
+        };
+      }
+
+      if (errors.authorizedPerson) {
+        newErrors.authorizedPerson = {
+          message: "Authorized Persons fields are required",
+        };
+      }
+
+      alertErrors(newErrors, toast);
+    }
 
     console.log(errors);
   }, [errors]);
@@ -36,7 +86,7 @@ const IndividualAccount = () => {
   };
   return (
     <div className="mb-4">
-      <div className="header bg-[#b41421] text-white p-3">
+      <div className="header bg-[#b41421] text-white p-3 mb-5">
         <h1 className="text-xl font-bold px-3">OPEN AN INDIVIDUAL ACCOUNT</h1>
       </div>
       <div className="container mx-auto lg:w-4/6 bg-white">
@@ -59,14 +109,28 @@ const IndividualAccount = () => {
               setValue={setValue}
             />
             <PepStatus register={register} errors={errors} />
-            <AuthorizedPersons register={register} />
+            <AuthorizedPersons
+              register={register}
+              fields={authorizedList}
+              setValue={setValue}
+              append={appendAuthorized}
+              remove={removeAuthorized}
+              errors={errors}
+            />
             <InvestmentDetails register={register} errors={errors} />
             <BankAccountDetails
               register={register}
               errors={errors}
               setValue={setValue}
             />
-            <SignatureMandate register={register} />
+            <SignatureMandate
+              register={register}
+              fields={signatoryList}
+              setValue={setValue}
+              append={appendSignatory}
+              remove={removeSiginatory}
+              errors={errors}
+            />
             <KycDocuments
               register={register}
               setValue={setValue}

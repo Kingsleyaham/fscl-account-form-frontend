@@ -26,8 +26,9 @@ const NextOfKin = ({ register, errors, setValue }) => {
               onChange={(e) =>
                 setValue("nokTitle", e.target.value, { shouldValidate: true })
               }
+              defaultValue=""
             >
-              <option disabled selected>
+              <option disabled value="">
                 Select Title
               </option>
               <option value="mr">Mr.</option>
@@ -48,8 +49,9 @@ const NextOfKin = ({ register, errors, setValue }) => {
               onChange={(e) =>
                 setValue("nokGender", e.target.value, { shouldValidate: true })
               }
+              defaultValue=""
             >
-              <option selected disabled>
+              <option value="" disabled>
                 Gender
               </option>
               <option>Male</option>

@@ -18,8 +18,9 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
                   shouldValidate: true,
                 });
               }}
+              defaultValue=""
             >
-              <option selected disabled>
+              <option value="" disabled>
                 Employment Status
               </option>
               <option value="employed">Employed</option>
