@@ -9,8 +9,10 @@ const InvestmentDetails = ({ register, errors }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investContactAddress && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.investContactAddress
+                    ? "border-[#b41421]"
+                    : " border-slate-300"
                 }`}
                 placeholder="Contact Address"
                 type="text"
@@ -21,8 +23,10 @@ const InvestmentDetails = ({ register, errors }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investPostalAddress && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.investPostalAddress
+                    ? "border-[#b41421]"
+                    : " border-slate-300"
                 }`}
                 placeholder="Postal Address"
                 type="text"
@@ -33,8 +37,10 @@ const InvestmentDetails = ({ register, errors }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investMobileNumber && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.investMobileNumber
+                    ? "border-[#b41421]"
+                    : " border-slate-300"
                 }`}
                 placeholder="Mobile No"
                 type="text"
@@ -45,8 +51,8 @@ const InvestmentDetails = ({ register, errors }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investEmail && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.investEmail ? "border-[#b41421]" : " border-slate-300"
                 }`}
                 placeholder="Email Address"
                 type="text"

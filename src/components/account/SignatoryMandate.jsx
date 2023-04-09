@@ -2,7 +2,7 @@ import { FcPlus } from "react-icons/fc";
 import React from "react";
 import { MdDeleteOutline } from "react-icons/md";
 
-const SignatureMandate = ({
+const SignatoryMandate = ({
   register,
   fields,
   setValue,
@@ -42,9 +42,10 @@ const SignatureMandate = ({
                 <div>
                   <label className="relative block">
                     <input
-                      className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                        errors?.signatory?.[index]?.name &&
-                        "placeholder:text-[#b41421]"
+                      className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                        errors?.signatory?.[index]?.name
+                          ? "border-[#b41421]"
+                          : "border-slate-300"
                       }`}
                       placeholder="Signatory Name"
                       type="text"
@@ -55,9 +56,10 @@ const SignatureMandate = ({
                 <div>
                   <label className="relative block">
                     <input
-                      className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                        errors?.signatory?.[index]?.designation &&
-                        "placeholder:text-[#b41421]"
+                      className={`placeholder:text-slate-600 block bg-white w-full borderrounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                        errors?.signatory?.[index]?.designation
+                          ? "border-[#b41421]"
+                          : "border-slate-300"
                       }`}
                       placeholder="Designation"
                       type="text"
@@ -67,10 +69,10 @@ const SignatureMandate = ({
                 </div>
                 <div>
                   <select
-                    className={`border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    className={`border text-sm rounded-lg text-slate-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
                       errors?.signatory?.[index]?.class
-                        ? "text-[#b41421]"
-                        : "text-slate-800"
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     onChange={(e) =>
                       setValue(`signatory.${index}.class`, e.target.value, {
@@ -121,4 +123,4 @@ const SignatureMandate = ({
   );
 };
 
-export default SignatureMandate;
+export default SignatoryMandate;

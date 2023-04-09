@@ -8,7 +8,7 @@ import KycDocuments from "../components/account/KycDocuments";
 import NextOfKin from "../components/account/NextOfKin";
 import PepStatus from "../components/account/PepStatus";
 import PersonalDetails from "../components/account/PersonalDetails";
-import SignatureMandate from "../components/account/SignatureMandate";
+import SignatoryMandate from "../components/account/SignatoryMandate";
 import { individualAccountSchema } from "../validations/individualAccount.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
@@ -123,7 +123,7 @@ const IndividualAccount = () => {
               errors={errors}
               setValue={setValue}
             />
-            <SignatureMandate
+            <SignatoryMandate
               register={register}
               fields={signatoryList}
               setValue={setValue}

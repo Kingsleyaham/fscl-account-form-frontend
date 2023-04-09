@@ -41,8 +41,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
             <div className="mb-6 grid gap-6 md:grid-cols-2 mt-5">
               <div>
                 <select
-                  className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                    errors.title ? "border-[#b41421]" : ""
+                  className={`border  text-sm text-gray-800 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    errors?.title ? "border-[#b41421]" : "border-gray-300"
                   }`}
                   onChange={(e) =>
                     setValue("title", e.target.value, { shouldValidate: true })
@@ -63,8 +63,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               <div>
                 <label className="relative block">
                   <input
-                    className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                      errors.firstName && "border-[#b41421]"
+                    className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                      errors?.firstName
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     placeholder="Firstname"
                     type="text"
@@ -75,8 +77,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               <div>
                 <label className="relative block">
                   <input
-                    className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                      errors.middleName && "border-[#b41421]"
+                    className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                      errors.middleName
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     placeholder="Middlename"
                     {...register("middleName")}
@@ -87,8 +91,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               <div>
                 <label className="relative block">
                   <input
-                    className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                      errors.surname && "border-[#b41421]"
+                    className={`placeholder: placeholder:text-slate-600 block bg-white w-full border  rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                      errors?.surname ? "border-[#b41421]" : "border-slate-300"
                     }`}
                     placeholder="Surname"
                     type="text"
@@ -99,8 +103,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
 
               <div className="relative block">
                 <select
-                  className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                    errors.gender && "border-[#b41421]"
+                  className={`border  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    errors.gender ? "border-[#b41421]" : "border-slate-300"
                   }`}
                   onChange={(e) =>
                     setValue("gender", e.target.value, { shouldValidate: true })
@@ -117,8 +121,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
 
               <div className="relative block">
                 <select
-                  className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                    errors.maritalStatus && "border-[#b41421]"
+                  className={`border  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                    errors.maritalStatus
+                      ? "border-[#b41421]"
+                      : "border-slate-300"
                   }`}
                   onChange={(e) =>
                     setValue("maritalStatus", e.target.value, {
@@ -142,13 +148,14 @@ const PersonalDetails = ({ register, setValue, errors }) => {
                   <CalendarIcon />
                   <input
                     type="text"
-                    className={`placeholder:text-slate-600 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
-                      errors.dateOfBirth && "border-[#b41421]"
+                    className={`placeholder:text-slate-600 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
+                      errors.dateOfBirth
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     placeholder="Date of Birth"
                     onFocus={(e) => {
                       e.target.type = "date";
-                      // e.target.value = "1995-05-29";
                     }}
                     onChange={(e) =>
                       setValue("dateOfBirth", e.target.value, {
@@ -162,8 +169,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               <div>
                 <label className="relative block">
                   <input
-                    className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                      errors.motherMaidenName && "border-[#b41421]"
+                    className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                      errors.motherMaidenName
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     placeholder="Mother's Maiden Name"
                     type="text"
@@ -174,8 +183,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               <div>
                 <label className="relative block">
                   <input
-                    className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                      errors.profession && "border-[#b41421]"
+                    className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                      errors.profession
+                        ? "border-[#b41421]"
+                        : "border-slate-300"
                     }`}
                     placeholder="Profession"
                     type="text"
@@ -186,8 +197,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
 
               <div>
                 <select
-                  className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
-                    errors.country && "border-[#b41421]"
+                  className={`border  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
+                    errors.country ? "border-[#b41421]" : "border-slate-300"
                   }`}
                   onChange={(e) => {
                     setValue("country", e.target.value, {
@@ -209,8 +220,10 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               </div>
               <div>
                 <select
-                  className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
-                    errors.stateOfOrigin && "border-[#b41421]"
+                  className={`border  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
+                    errors.stateOfOrigin
+                      ? "border-[#b41421]"
+                      : "border-slate-300"
                   }`}
                   onChange={(e) => {
                     setValue("stateOfOrigin", e.target.value, {
@@ -234,8 +247,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
               {currentCountry === "nigeria" ? (
                 <div>
                   <select
-                    className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
-                      errors.lga && "border-[#b41421]"
+                    className={`border  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:text-gray-500 ${
+                      errors.lga ? "border-[#b41421]" : "border-slate-300"
                     }`}
                     onChange={(e) => {
                       setValue("lga", e.target.value, {
@@ -258,8 +271,8 @@ const PersonalDetails = ({ register, setValue, errors }) => {
                 <div>
                   <label className="relative block">
                     <input
-                      className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                        errors.lga && "border-[#b41421]"
+                      className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                        errors.lga ? "border-[#b41421]" : "border-slate-300"
                       }`}
                       placeholder="Local Government Area"
                       type="text"

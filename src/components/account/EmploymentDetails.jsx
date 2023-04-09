@@ -10,8 +10,10 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
         <div className="mb-6 grid gap-6 md:grid-cols-2 mt-5">
           <div>
             <select
-              className={`border border-gray-300  text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                errors.employmentStatus && "border-[#b41421]"
+              className={`border text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                errors.employmentStatus
+                  ? "border-[#b41421]"
+                  : "border-slate-300"
               }`}
               onChange={(e) => {
                 setValue("employmentStatus", e.target.value, {
@@ -32,8 +34,8 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.employerName && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors?.employerName ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Employer's Name"
                 {...register("employerName")}
@@ -44,8 +46,8 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.industry && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.industry ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Industry"
                 {...register("industry")}
@@ -58,8 +60,8 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
             <CalendarIcon />
             <input
               type="text"
-              className={`placeholder:text-slate-600 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
-                errors.employmentDate && "border-[#b41421]"
+              className={`placeholder:text-slate-600 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
+                errors.employmentDate ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Employment Date"
               onFocus={(e) => {
@@ -77,8 +79,8 @@ const EmploymentDetails = ({ register, errors, setValue }) => {
         <div>
           <label className="relative block">
             <input
-              className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                errors.employerAddress && "border-[#b41421]"
+              className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                errors.employerAddress ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Employer's Address"
               type="text"

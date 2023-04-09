@@ -11,7 +11,7 @@ setLocale({
   },
 });
 
-export const individualAccountSchema = object({
+export const jointAccountSchema = object({
   title: string().required(),
   firstName: string().required().trim().label("firstname"),
   middleName: string().nullable().trim().label("middlename"),

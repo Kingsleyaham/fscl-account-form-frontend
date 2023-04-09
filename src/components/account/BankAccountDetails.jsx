@@ -10,8 +10,8 @@ const BankAccountDetails = ({ register, errors, setValue }) => {
         <div className="pb-3">
           <label className="relative block">
             <input
-              className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                errors.accountName && "border-[#b41421]"
+              className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                errors.accountName ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Account Name"
               type="text"
@@ -24,8 +24,8 @@ const BankAccountDetails = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.bankName && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.bankName ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Bank Name"
                 type="text"
@@ -36,8 +36,8 @@ const BankAccountDetails = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.accountNumber && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.accountNumber ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Account Number"
                 type="text"
@@ -50,8 +50,8 @@ const BankAccountDetails = ({ register, errors, setValue }) => {
             <CalendarIcon />
             <input
               type="text"
-              className={`placeholder:text-slate-600 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
-                errors.accountOpenDate && "border-[#b41421]"
+              className={`placeholder:text-slate-600 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
+                errors.accountOpenDate ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Account Opening Date"
               onFocus={(e) => {
@@ -69,8 +69,8 @@ const BankAccountDetails = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.bvn && "border-[#b41421]"
+                className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.bvn ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Bank Verification Number"
                 type="text"

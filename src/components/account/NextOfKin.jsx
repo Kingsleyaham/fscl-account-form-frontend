@@ -8,8 +8,8 @@ const NextOfKin = ({ register, errors, setValue }) => {
         <div>
           <label className="relative block">
             <input
-              className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                errors.nokFullname && "border-[#b41421]"
+              className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                errors.nokFullname ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Full Name"
               type="text"
@@ -20,8 +20,8 @@ const NextOfKin = ({ register, errors, setValue }) => {
         <div className="mb-6 grid gap-6 md:grid-cols-2 mt-5">
           <div>
             <select
-              className={`border border-gray-300  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                errors.nokTitle && "border-[#b41421]"
+              className={`border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                errors.nokTitle ? "border-[#b41421]" : "border-slate-300"
               }`}
               onChange={(e) =>
                 setValue("nokTitle", e.target.value, { shouldValidate: true })
@@ -31,7 +31,6 @@ const NextOfKin = ({ register, errors, setValue }) => {
               <option disabled value="">
                 Select Title
               </option>
-              <option value="mr">Mr.</option>
               <option value="mr">Mr.</option>
               <option value="mrs">Mrs.</option>
               <option value="ms">Ms.</option>
@@ -43,8 +42,8 @@ const NextOfKin = ({ register, errors, setValue }) => {
 
           <div className="relative block">
             <select
-              className={`border border-gray-300  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
-                errors.nokGender && "border-[#b41421]"
+              className={`border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
+                errors.nokGender ? "border-[#b41421]" : "border-slate-300"
               }`}
               onChange={(e) =>
                 setValue("nokGender", e.target.value, { shouldValidate: true })
@@ -62,8 +61,10 @@ const NextOfKin = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.nokRelationship && "border-[#b41421]"
+                className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.nokRelationship
+                    ? "border-[#b41421]"
+                    : "border-slate-300"
                 }`}
                 placeholder="Relationship"
                 type="text"
@@ -75,8 +76,10 @@ const NextOfKin = ({ register, errors, setValue }) => {
           <div>
             <label className="relative block">
               <input
-                className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.nokMobileNumber && "border-[#b41421]"
+                className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors.nokMobileNumber
+                    ? "border-[#b41421]"
+                    : "border-slate-300"
                 }`}
                 placeholder="Mobile No"
                 type="text"
@@ -89,8 +92,8 @@ const NextOfKin = ({ register, errors, setValue }) => {
         <div>
           <label className="relative block">
             <input
-              className={`placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                errors.nokAddress && "border-[#b41421]"
+              className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                errors.nokAddress ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Contact Address"
               type="text"

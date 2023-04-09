@@ -1,6 +1,6 @@
 import CalendarIcon from "../CalendarIcon";
 
-const CorporateDetails = () => {
+const CorporateDetails = ({ register, setValue, errors }) => {
   return (
     <div>
       <div className="bg-[#6d7275] text-white font-semibold py-2 px-3 text-xl mt-10 mb-5">
@@ -10,10 +10,12 @@ const CorporateDetails = () => {
         <div className="pb-3">
           <label className="relative block">
             <input
-              className="placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm"
+              className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                errors?.companyName ? "border-[#b41421]" : "border-slate-300"
+              }`}
               placeholder="Company Name"
               type="text"
-              name="companyName"
+              {...register("companyName")}
             />
           </label>
         </div>
@@ -22,10 +24,12 @@ const CorporateDetails = () => {
           <div>
             <label className="relative block">
               <input
-                className="placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm"
+                className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors?.rcNum ? "border-[#b41421]" : "border-slate-300"
+                }`}
                 placeholder="RC No"
                 type="text"
-                name="rcNum"
+                {...register("rcNum")}
               />
             </label>
           </div>
@@ -34,23 +38,31 @@ const CorporateDetails = () => {
             <CalendarIcon />
             <input
               type="text"
-              className="placeholder:text-slate-600 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
+              className={`placeholder:text-slate-600 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
+                errors?.dateofInc ? "border-[#b41421]" : "border-slate-300"
+              }`}
               placeholder="Date of Inc."
               name="dateofInc"
               onFocus={(e) => {
                 e.target.type = "date";
-                // e.target.value = "2013-05-29";
               }}
+              onChange={(e) =>
+                setValue("dateofInc", e.target.value, {
+                  shouldValidate: true,
+                })
+              }
             />
           </div>
 
           <div>
             <label className="relative block">
               <input
-                className="placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm"
+                className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors?.tin ? "border-[#b41421]" : "border-slate-300"
+                }`}
                 placeholder="TIN"
                 type="text"
-                name="tin"
+                {...register("tin")}
               />
             </label>
           </div>
@@ -58,10 +70,14 @@ const CorporateDetails = () => {
           <div>
             <label className="relative block">
               <input
-                className="placeholder: placeholder:text-slate-600 block bg-white w-full border border-slate-300 rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm"
+                className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
+                  errors?.corpAccountNumber
+                    ? "border-[#b41421]"
+                    : "border-slate-300"
+                }`}
                 placeholder="Account Number"
                 type="text"
-                name="corpAccountNumber"
+                {...register("corpAccountNumber")}
               />
             </label>
           </div>

@@ -12,7 +12,6 @@ const PepStatus = ({ register, errors }) => {
               id="pepStatusYes"
               type="radio"
               value="yes"
-              name="pepStatus"
               {...register("pepStatus")}
               className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500 focus:ring-2"
             />
@@ -23,7 +22,6 @@ const PepStatus = ({ register, errors }) => {
           <div className="px-3">
             <input
               id="pepStatusNo"
-              checked
               {...register("pepStatus")}
               type="radio"
               value="no"
