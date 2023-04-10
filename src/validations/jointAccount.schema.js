@@ -119,10 +119,7 @@ export const jointAccountSchema = object({
     }),
 
   // Investment Details
-  investContactAddress: string()
-    .required()
-    .trim()
-    .label("Investment Contact Address"),
+  investAddress: string().required().trim().label("Investment Contact Address"),
 
   investPostalAddress: string()
     .required()

@@ -69,20 +69,14 @@ export const corporateAccountSchema = object({
   ),
 
   // Investment Details
-  investContactAddress: string()
-    .required()
-    .trim()
-    .label("Investment Contact Address"),
+  investAddress: string().required().trim().label("Investment Contact Address"),
 
   investPostalAddress: string()
     .required()
     .trim()
     .label("Investment Postal Address"),
 
-  investMobileNumber: string()
-    .required()
-    .trim()
-    .label("Investment Mobile Number"),
+  investMobileNum: string().required().trim().label("Investment Mobile Number"),
 
   investEmail: string()
     .required()

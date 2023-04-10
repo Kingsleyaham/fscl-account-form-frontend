@@ -10,13 +10,13 @@ const InvestmentDetails = ({ register, errors }) => {
             <label className="relative block">
               <input
                 className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investContactAddress
+                  errors.investAddress
                     ? "border-[#b41421]"
                     : " border-slate-300"
                 }`}
                 placeholder="Contact Address"
                 type="text"
-                {...register("investContactAddress")}
+                {...register("investAddress")}
               />
             </label>
           </div>
@@ -38,13 +38,13 @@ const InvestmentDetails = ({ register, errors }) => {
             <label className="relative block">
               <input
                 className={`placeholder: placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors.investMobileNumber
+                  errors.investMobileNum
                     ? "border-[#b41421]"
                     : " border-slate-300"
                 }`}
                 placeholder="Mobile No"
                 type="text"
-                name="mobileNumber"
+                {...register("investMobileNum")}
               />
             </label>
           </div>
@@ -56,7 +56,7 @@ const InvestmentDetails = ({ register, errors }) => {
                 }`}
                 placeholder="Email Address"
                 type="text"
-                name="email"
+                {...register("investEmail")}
               />
             </label>
           </div>
