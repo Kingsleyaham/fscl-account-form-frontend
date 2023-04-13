@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { alertErrors } from "../utils/handleError";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const IndividualAccount = () => {
   const {
@@ -81,8 +82,28 @@ const IndividualAccount = () => {
     console.log(errors);
   }, [errors]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    const response = await postData(data);
+
+    console.log(response);
+  };
+
+  const postData = async (data) => {
+    try {
+      const response = await axios.post(
+        // "/api/account/individual.php",
+        "/api/account/individual",
+        {
+          ...data,
+        }
+        // { headers: { mode: "no-cors" } }
+      );
+
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="mb-4">

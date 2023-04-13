@@ -44,7 +44,7 @@ const InvestmentDetails = ({ register, errors }) => {
                 }`}
                 placeholder="Mobile No"
                 type="text"
-                {...register("investMobileNum")}
+                {...register("investMobileNumber")}
               />
             </label>
           </div>
