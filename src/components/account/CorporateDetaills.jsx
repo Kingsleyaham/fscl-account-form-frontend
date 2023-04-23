@@ -39,15 +39,15 @@ const CorporateDetails = ({ register, setValue, errors }) => {
             <input
               type="text"
               className={`placeholder:text-slate-600 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 ${
-                errors?.dateofInc ? "border-[#b41421]" : "border-slate-300"
+                errors?.dateOfInc ? "border-[#b41421]" : "border-slate-300"
               }`}
               placeholder="Date of Inc."
-              name="dateofInc"
+              name="dateOfInc"
               onFocus={(e) => {
                 e.target.type = "date";
               }}
               onChange={(e) =>
-                setValue("dateofInc", e.target.value, {
+                setValue("dateOfInc", e.target.value, {
                   shouldValidate: true,
                 })
               }
@@ -71,9 +71,7 @@ const CorporateDetails = ({ register, setValue, errors }) => {
             <label className="relative block">
               <input
                 className={`placeholder:text-slate-600 block bg-white w-full border rounded-lg py-2 px-4 shadow-sm focus:outline-none focus:border-[#c7d6d5] focus:ring-[#c7d6d5] focus:ring-1 sm:text-sm ${
-                  errors?.corpAccountNumber
-                    ? "border-[#b41421]"
-                    : "border-slate-300"
+                  errors?.corpAccountNumber ? "border-[#b41421]" : "border-slate-300"
                 }`}
                 placeholder="Account Number"
                 type="text"

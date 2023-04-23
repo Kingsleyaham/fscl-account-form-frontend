@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import IndividualAccount from "./pages/IndividualAccount";
 import JointAccount from "./pages/JointAccount";
 import NotFound from "./pages/NotFound";
+import PdfTemplate from "./components/pdf/pdftem";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/individual" element={<IndividualAccount />} />
           <Route path="/joint" element={<JointAccount />} />
           <Route path="/corporate" element={<CorporateAccount />} />
+          <Route path="/pdf" element={<PdfTemplate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

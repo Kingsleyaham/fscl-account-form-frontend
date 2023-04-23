@@ -26,22 +26,20 @@ export const individualAccountSchema = object({
 
       return parsedDate;
     })
-    .test(
-      "dateOfBirth",
-      "dob should be greater than 18years",
-      function (value) {
-        return differenceInYears(new Date(), new Date(value)) >= 18;
-      }
-    )
+    .test("dateOfBirth", "dob should be greater than 18years", function (value) {
+      return differenceInYears(new Date(), new Date(value)) >= 18;
+    })
     .required()
+    .typeError("dob must be of type date")
     .label("Dob"),
+
   motherMaidenName: string().required().label("Mother Maiden Name"),
   profession: string().required(),
   country: string().required(),
   stateOfOrigin: string().required().label("State of Origin"),
   lga: string().required().label("Local Government Area"),
 
-  //   contact address
+  //   contact details
   contactAddress: string().required().label("Contact Address"),
   postalAddress: string().required().label("Postal Address"),
   mobileNumber: string().required().label("Mobile Number"),
@@ -56,6 +54,7 @@ export const individualAccountSchema = object({
       otherwise: (val) => val.nullable().notRequired(),
     })
     .label("Employer Name"),
+
   industry: string()
     .required()
     .when("employmentStatus", {
@@ -88,7 +87,8 @@ export const individualAccountSchema = object({
           .test("employmentDate", "invalid employment date", function (value) {
             return differenceInYears(new Date(), new Date(value)) <= 100;
           })
-          .max(new Date()),
+          .max(new Date())
+          .typeError("Employment Date must be of type date"),
     })
     .label("Employment Date"),
 
@@ -101,7 +101,7 @@ export const individualAccountSchema = object({
       /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
       "Name can only contain Latin letters."
     )
-    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, "Please enter your full name."),
+    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, "Please enter nok full name."),
 
   nokTitle: string().required().trim().label("Next of Kin Title"),
   nokGender: string().required().trim().label("Next of Kin Gender"),
@@ -121,15 +121,9 @@ export const individualAccountSchema = object({
   // Investment Details
   investAddress: string().required().trim().label("Investment Contact Address"),
 
-  investPostalAddress: string()
-    .required()
-    .trim()
-    .label("Investment Postal Address"),
+  investPostalAddress: string().required().trim().label("Investment Postal Address"),
 
-  investMobileNumber: string()
-    .required()
-    .trim()
-    .label("Investment Mobile Number"),
+  investMobileNumber: string().required().trim().label("Investment Mobile Number"),
 
   investEmail: string()
     .required()
@@ -154,12 +148,9 @@ export const individualAccountSchema = object({
     })
     .max(new Date())
     .required()
+    .typeError("Account open date must be of type date")
     .label("Account Open Date"),
-  bvn: string()
-    .required()
-    .trim()
-    .label("Bvn")
-    .length(11, "Invalid Bank Verification No"),
+  bvn: string().required().trim().label("Bvn").length(11, "Invalid Bank Verification No"),
 
   // Authorized Persons
   authorizedPerson: array().of(
@@ -171,11 +162,7 @@ export const individualAccountSchema = object({
       bvn: string().required().length(11, "Invalid Bank Verification No"),
       identification: string().required().trim(),
       passport: mixed()
-        .test(
-          "required",
-          "Passport Photo is required",
-          (value) => value.length > 0
-        )
+        .test("required", "Passport Photo is required", (value) => value.length > 0)
         .test(
           "file format",
           "Invalid file format",
@@ -230,28 +217,16 @@ export const individualAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   identityUpload: mixed()
-    .test(
-      "required",
-      "Identification document is required",
-      (value) => value.length > 0
-    )
+    .test("required", "Identification document is required", (value) => value.length > 0)
     .test(
       "file format",
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   signatureUpload: mixed()
     .test("required", "Signature is required", (value) => value.length > 0)
@@ -260,11 +235,7 @@ export const individualAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   passportPhoto: mixed()
     .test("required", "Passport Photo is required", (value) => value.length > 0)
@@ -273,9 +244,5 @@ export const individualAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 });
