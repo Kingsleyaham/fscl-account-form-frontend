@@ -15,10 +15,11 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { jointAccountSchema } from "../validations/jointAccount.schema";
 import axios from "axios";
+import { BiLoaderCircle } from "react-icons/bi";
 
 const JointAccount = () => {
   const {
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     register,
     setValue,
@@ -167,9 +168,13 @@ const JointAccount = () => {
             <div className="pt-16 text-right p-5">
               <button
                 type="submit"
-                className="bg-[#b41421] text-white hover:bg-[#6d7275] hover:text-[#ecebf3] font-semibold px-6 py-2 rounded-full"
+                className={`bg-[#b41421] text-white hover:bg-[#6d7275] hover:text-[#ecebf3] font-semibold px-6 py-2 rounded-full ${
+                  isSubmitting ? "cursor-not-allowed" : "cursor-pointer"
+                } flex items-center float-right`}
+                disabled={isSubmitting}
               >
-                Submit
+                {isSubmitting && <BiLoaderCircle className="text-2xl inline-block pr-1" />}
+                <span className="inline-block">{isSubmitting ? "Submitting" : "Submit"}</span>
               </button>
             </div>
           </form>
