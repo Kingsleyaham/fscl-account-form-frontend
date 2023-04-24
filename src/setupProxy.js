@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 const target =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
-    : "https://fscl-account-form.cyclic.app/";
+    : "https://fcsl-account-form.onrender.com/";
 
 module.exports = function (app) {
   app.use(
