@@ -88,6 +88,9 @@ const CorporateAccount = () => {
   const postData = async (data) => {
     const formData = getFormData(data);
     console.log(formData);
+    if (process.env.NODE_ENV !== "development") {
+      axios.defaults.baseURL = "https://fcsl-account-form.onrender.com";
+    }
     try {
       const response = await axios.post(
         "/api/account/corporate",
