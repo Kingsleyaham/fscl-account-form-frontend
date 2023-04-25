@@ -10,14 +10,17 @@ import PepStatus from "../components/account/PepStatus";
 import PersonalDetails from "../components/account/PersonalDetails";
 import SignatoryMandate from "../components/account/SignatoryMandate";
 import { alertErrors } from "../utils/handleError";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { jointAccountSchema } from "../validations/jointAccount.schema";
 import axios from "axios";
 import { BiLoaderCircle } from "react-icons/bi";
+import PopupModal from "../components/PopupModal";
 
 const JointAccount = () => {
+  const [open, setOpen] = useState(false);
+
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -85,15 +88,23 @@ const JointAccount = () => {
 
   const onSubmit = async (data) => {
     const response = await postData(data);
+
     console.log(response);
+
+    if (response) {
+      setOpen(true);
+      setTimeout(() => {
+        window.location.href = "https://www.fcslng.com/";
+      }, 2000);
+    }
   };
 
   const postData = async (data) => {
     const formData = getFormData(data);
     console.log(formData);
-     if (process.env.NODE_ENV !== "development") {
-       axios.defaults.baseURL = "https://fcsl-account-form.onrender.com";
-     }
+    if (process.env.NODE_ENV !== "development") {
+      axios.defaults.baseURL = "https://fcsl-account-form.onrender.com";
+    }
     try {
       const response = await axios.post(
         "/api/account/joint",
@@ -102,7 +113,7 @@ const JointAccount = () => {
         },
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -183,6 +194,7 @@ const JointAccount = () => {
           </form>
         </div>
       </div>
+      {open && <PopupModal open={open} setOpen={setOpen} />}
     </div>
   );
 };

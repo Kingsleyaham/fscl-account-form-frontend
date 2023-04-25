@@ -11,13 +11,16 @@ import PersonalDetails from "../components/account/PersonalDetails";
 import SignatoryMandate from "../components/account/SignatoryMandate";
 import { individualAccountSchema } from "../validations/individualAccount.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { alertErrors } from "../utils/handleError";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { BiLoaderCircle } from "react-icons/bi";
+import PopupModal from "../components/PopupModal";
 
 const IndividualAccount = () => {
+  const [open, setOpen] = useState(false);
+
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -84,9 +87,14 @@ const IndividualAccount = () => {
   }, [errors]);
 
   const onSubmit = async (data) => {
-    // console.log(data);
     const response = await postData(data);
-    console.log(response);
+    if (response) {
+      setOpen(true);
+      setTimeout(() => {
+        window.location.href = "https://www.fcslng.com/";
+      }, 2000);
+    }
+    // console.log(response.response.data);
   };
 
   const postData = async (data) => {
@@ -102,7 +110,7 @@ const IndividualAccount = () => {
         },
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -183,6 +191,7 @@ const IndividualAccount = () => {
           </form>
         </div>
       </div>
+      {open && <PopupModal open={open} setOpen={setOpen} />}
     </div>
   );
 };

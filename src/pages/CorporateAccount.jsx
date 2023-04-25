@@ -7,14 +7,17 @@ import InvestmentDetails from "../components/account/InvestmentDetails";
 import KycDocuments from "../components/account/KycDocuments";
 import SignatoryMandate from "../components/account/SignatoryMandate";
 import { alertErrors } from "../utils/handleError";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { corporateAccountSchema } from "../validations/corporateAccount.schema";
 import axios from "axios";
 import { BiLoaderCircle } from "react-icons/bi";
+import PopupModal from "../components/PopupModal";
 
 const CorporateAccount = () => {
+  const [open, setOpen] = useState(false);
+
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -82,7 +85,12 @@ const CorporateAccount = () => {
 
   const onSubmit = async (data) => {
     const response = await postData(data);
-    console.log(response);
+    if (response) {
+      setOpen(true);
+      setTimeout(() => {
+        window.location.href = "https://www.fcslng.com/";
+      }, 2000);
+    }
   };
 
   const postData = async (data) => {
@@ -99,7 +107,7 @@ const CorporateAccount = () => {
         },
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -176,6 +184,7 @@ const CorporateAccount = () => {
           </form>
         </div>
       </div>
+      {open && <PopupModal open={open} setOpen={setOpen} />}
     </div>
   );
 };
