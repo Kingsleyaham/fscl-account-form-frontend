@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "http://account.fcslng.com",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.14",
