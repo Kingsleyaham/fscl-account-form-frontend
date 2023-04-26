@@ -107,7 +107,7 @@ const JointAccount = () => {
       }
       if (errors.personalDetails) {
         newErrors.personalDetails = {
-          message: "Authorized Persons fields are required",
+          message: "Personal Details fields are required",
         };
       }
 
