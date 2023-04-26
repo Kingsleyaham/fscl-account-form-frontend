@@ -7,7 +7,6 @@ import InvestmentDetails from "../components/account/InvestmentDetails";
 import KycDocuments from "../components/account/KycDocuments";
 import NextOfKin from "../components/account/NextOfKin";
 import PepStatus from "../components/account/PepStatus";
-import PersonalDetails from "../components/account/PersonalDetails";
 import SignatoryMandate from "../components/account/SignatoryMandate";
 import { alertErrors } from "../utils/handleError";
 import { useEffect, useState } from "react";
@@ -18,6 +17,7 @@ import axios from "axios";
 import PopupModal from "../components/PopupModal";
 import TermsCondition from "../components/form/TermsCondition";
 import SubmitBtn from "../components/form/SubmitBtn";
+import JointPersonalDetails from "../components/account/JointPersonalDetails";
 
 const JointAccount = () => {
   const [open, setOpen] = useState(false);
@@ -44,6 +44,22 @@ const JointAccount = () => {
           signature: [],
         },
       ],
+      personalDetails: [
+        {
+          tittle: "",
+          firstName: "",
+          middleName: "",
+          surname: "",
+          gender: "",
+          maritalStatus: "",
+          dateOfBirth: "",
+          motherMaidenName: "",
+          profession: "",
+          country: "",
+          stateOfOrigin: "",
+          lga: "",
+        },
+      ],
     },
   });
 
@@ -65,9 +81,18 @@ const JointAccount = () => {
     name: "authorizedPerson",
   });
 
+  const {
+    fields: persDetailsList,
+    append: appendPersDetails,
+    remove: removePersDetails,
+  } = useFieldArray({
+    control,
+    name: "personalDetails",
+  });
+
   useEffect(() => {
     if (!(Object.keys(errors).length === 0)) {
-      const { signatory, authorizedPerson, ...newErrors } = errors;
+      const { signatory, authorizedPerson, personalDetails, ...newErrors } = errors;
 
       if (errors.signatory) {
         newErrors.signatory = {
@@ -80,6 +105,11 @@ const JointAccount = () => {
           message: "Authorized Persons fields are required",
         };
       }
+      if (errors.personalDetails) {
+        newErrors.personalDetails = {
+          message: "Personal Details fields are required",
+        };
+      }
 
       alertErrors(newErrors, toast);
     }
@@ -88,6 +118,7 @@ const JointAccount = () => {
   }, [errors]);
 
   const onSubmit = async (data) => {
+    console.log(data);
     const response = await postData(data);
 
     console.log(response);
@@ -155,7 +186,14 @@ const JointAccount = () => {
       <div className="container mx-auto lg:w-4/6 bg-white">
         <div className="p-5">
           <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
-            <PersonalDetails register={register} setValue={setValue} errors={errors} />
+            <JointPersonalDetails
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              fields={persDetailsList}
+              append={appendPersDetails}
+              remove={removePersDetails}
+            />
             <ContactAddress register={register} errors={errors} />
             <EmploymentDetails register={register} errors={errors} setValue={setValue} />
             <NextOfKin register={register} errors={errors} setValue={setValue} />

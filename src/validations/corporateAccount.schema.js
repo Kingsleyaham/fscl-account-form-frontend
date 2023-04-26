@@ -1,4 +1,4 @@
-import { date, object, string, setLocale, mixed, array } from "yup";
+import { date, object, string, setLocale, mixed, array, bool } from "yup";
 import { parse, isDate, differenceInYears } from "date-fns";
 
 // const message = "field is required";
@@ -164,4 +164,7 @@ export const corporateAccountSchema = object({
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
     .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
+
+  // Terms and Condition Validation
+  termsAndCondition: bool().oneOf([true], "Please Accept our Terms and Condition"),
 });

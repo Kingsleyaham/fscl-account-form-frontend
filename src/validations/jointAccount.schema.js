@@ -1,4 +1,4 @@
-import { date, object, string, setLocale, mixed, array } from "yup";
+import { date, object, string, setLocale, mixed, array, bool } from "yup";
 import { parse, isDate, differenceInYears } from "date-fns";
 
 // const message = "field is required";
@@ -12,34 +12,35 @@ setLocale({
 });
 
 export const jointAccountSchema = object({
-  title: string().required(),
-  firstName: string().required().trim().label("firstname"),
-  middleName: string().nullable().trim().label("middlename"),
-  surname: string().required().trim(),
-  gender: string().required(),
-  maritalStatus: string().required().label("marital status"),
-  dateOfBirth: date()
-    .transform((value, originalValue) => {
-      const parsedDate = isDate(originalValue)
-        ? originalValue
-        : parse(originalValue, "yyyy-MM-dd", new Date());
+  // personal details
+  personalDetails: array().of(
+    object().shape({
+      title: string().required(),
+      firstName: string().required().trim().label("firstname"),
+      middleName: string().nullable().trim().label("middlename"),
+      surname: string().required().trim(),
+      gender: string().required(),
+      maritalStatus: string().required().label("marital status"),
+      dateOfBirth: date()
+        .transform((value, originalValue) => {
+          const parsedDate = isDate(originalValue)
+            ? originalValue
+            : parse(originalValue, "yyyy-MM-dd", new Date());
 
-      return parsedDate;
+          return parsedDate;
+        })
+        .test("dateOfBirth", "dob should be greater than 18years", function (value) {
+          return differenceInYears(new Date(), new Date(value)) >= 18;
+        })
+        .required()
+        .label("Dob"),
+      motherMaidenName: string().required().label("Mother Maiden Name"),
+      profession: string().required(),
+      country: string().required(),
+      stateOfOrigin: string().required().label("State of Origin"),
+      lga: string().required().label("Local Government Area"),
     })
-    .test(
-      "dateOfBirth",
-      "dob should be greater than 18years",
-      function (value) {
-        return differenceInYears(new Date(), new Date(value)) >= 18;
-      }
-    )
-    .required()
-    .label("Dob"),
-  motherMaidenName: string().required().label("Mother Maiden Name"),
-  profession: string().required(),
-  country: string().required(),
-  stateOfOrigin: string().required().label("State of Origin"),
-  lga: string().required().label("Local Government Area"),
+  ),
 
   //   contact address
   contactAddress: string().required().label("Contact Address"),
@@ -121,15 +122,9 @@ export const jointAccountSchema = object({
   // Investment Details
   investAddress: string().required().trim().label("Investment Contact Address"),
 
-  investPostalAddress: string()
-    .required()
-    .trim()
-    .label("Investment Postal Address"),
+  investPostalAddress: string().required().trim().label("Investment Postal Address"),
 
-  investMobileNumber: string()
-    .required()
-    .trim()
-    .label("Investment Mobile Number"),
+  investMobileNumber: string().required().trim().label("Investment Mobile Number"),
 
   investEmail: string()
     .required()
@@ -155,11 +150,7 @@ export const jointAccountSchema = object({
     .max(new Date())
     .required()
     .label("Account Open Date"),
-  bvn: string()
-    .required()
-    .trim()
-    .label("Bvn")
-    .length(11, "Invalid Bank Verification No"),
+  bvn: string().required().trim().label("Bvn").length(11, "Invalid Bank Verification No"),
 
   // Authorized Persons
   authorizedPerson: array().of(
@@ -171,11 +162,7 @@ export const jointAccountSchema = object({
       bvn: string().required().length(11, "Invalid Bank Verification No"),
       identification: string().required().trim(),
       passport: mixed()
-        .test(
-          "required",
-          "Passport Photo is required",
-          (value) => value.length > 0
-        )
+        .test("required", "Passport Photo is required", (value) => value.length > 0)
         .test(
           "file format",
           "Invalid file format",
@@ -230,28 +217,16 @@ export const jointAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   identityUpload: mixed()
-    .test(
-      "required",
-      "Identification document is required",
-      (value) => value.length > 0
-    )
+    .test("required", "Identification document is required", (value) => value.length > 0)
     .test(
       "file format",
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   signatureUpload: mixed()
     .test("required", "Signature is required", (value) => value.length > 0)
@@ -260,11 +235,7 @@ export const jointAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   passportPhoto: mixed()
     .test("required", "Passport Photo is required", (value) => value.length > 0)
@@ -273,9 +244,8 @@ export const jointAccountSchema = object({
       "Invalid file format",
       (value) => value.length && supportedFormat.includes(value[0].type)
     )
-    .test(
-      "file size",
-      "File size too large",
-      (value) => value.length && value[0].size <= 1048576
-    ),
+    .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
+
+  // Terms and Condition Validation
+  termsAndCondition: bool().oneOf([true], "Please Accept our Terms and Condition"),
 });
