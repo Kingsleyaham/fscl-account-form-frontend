@@ -2,14 +2,7 @@ import React from "react";
 import { FcPlus } from "react-icons/fc";
 import { MdDeleteOutline } from "react-icons/md";
 
-const AuthorizedPersons = ({
-  register,
-  fields,
-  setValue,
-  append,
-  remove,
-  errors,
-}) => {
+const AuthorizedPersons = ({ register, fields, setValue, append, remove, errors }) => {
   return (
     <div>
       <div className="bg-[#6d7275] text-white font-semibold py-2 px-3 text-xl">
@@ -29,9 +22,7 @@ const AuthorizedPersons = ({
           {fields.map((field, index) => (
             <div className="border-b p-5 rounded-md" key={field.id}>
               <div className="flex items-center justify-between">
-                <p className="font-bold text-slate-700">
-                  Signatory {index + 1}
-                </p>
+                <p className="font-bold text-slate-700">Signatory {index + 1}</p>
                 {index > 0 && (
                   <MdDeleteOutline
                     className="text-2xl text-[#b41421] cursor-pointer"
@@ -121,13 +112,9 @@ const AuthorizedPersons = ({
                     }`}
                     defaultValue=""
                     onChange={(e) =>
-                      setValue(
-                        `authorizedPerson.${index}.identification`,
-                        e.target.value,
-                        {
-                          shouldValidate: true,
-                        }
-                      )
+                      setValue(`authorizedPerson.${index}.identification`, e.target.value, {
+                        shouldValidate: true,
+                      })
                     }
                   >
                     <option disabled value="">
@@ -135,9 +122,7 @@ const AuthorizedPersons = ({
                     </option>
                     <option value="national id">National ID</option>
                     <option value="drivers license">Driver's License</option>
-                    <option value="International passport">
-                      International Passport
-                    </option>
+                    <option value="International passport">International Passport</option>
                     <option value="others">Others</option>
                   </select>
                 </div>

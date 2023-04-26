@@ -247,6 +247,5 @@ export const individualAccountSchema = object({
     .test("file size", "File size too large", (value) => value.length && value[0].size <= 1048576),
 
   // Terms and Condition Validation
-
   termsAndCondition: bool().oneOf([true], "Please Accept our Terms and Condition"),
 });

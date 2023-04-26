@@ -6,7 +6,7 @@ const TermsCondition = ({ register, errors }) => {
       <div>
         <input
           type="checkbox"
-          class={`bg-[#c7d6d5] ${
+          className={`bg-[#c7d6d5] ${
             errors.termsAndCondition ? "border-[#b41421]" : "border-[#c7d6d5]"
           }  text-[#b41421] focus:ring-[#ecebf3] w-5 h-5`}
           {...register("termsAndCondition")}

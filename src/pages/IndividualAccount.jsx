@@ -89,12 +89,12 @@ const IndividualAccount = () => {
 
   const onSubmit = async (data) => {
     const response = await postData(data);
-    if (response) {
-      setOpen(true);
-      setTimeout(() => {
-        window.location.href = "https://www.fcslng.com/";
-      }, 2000);
-    }
+    // if (response) {
+    //   setOpen(true);
+    //   setTimeout(() => {
+    //     window.location.href = "https://www.fcslng.com/";
+    //   }, 2000);
+    // }
     // console.log(response.response.data);
   };
 
