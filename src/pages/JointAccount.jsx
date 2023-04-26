@@ -15,7 +15,6 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { jointAccountSchema } from "../validations/jointAccount.schema";
 import axios from "axios";
-import { BiLoaderCircle } from "react-icons/bi";
 import PopupModal from "../components/PopupModal";
 import TermsCondition from "../components/form/TermsCondition";
 import SubmitBtn from "../components/form/SubmitBtn";
