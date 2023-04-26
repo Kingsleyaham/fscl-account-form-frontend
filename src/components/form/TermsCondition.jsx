@@ -2,7 +2,7 @@ import FCSLTermsAndCondition from "../../assets/FCSL_ACCOUNT_OPENING_FORM_T&C.pd
 
 const TermsCondition = ({ register, errors }) => {
   return (
-    <div className="flex pt-6 items-center px-6 text-gray-700">
+    <div className="flex pt-6 items-start px-6 text-gray-700">
       <div>
         <input
           type="checkbox"
