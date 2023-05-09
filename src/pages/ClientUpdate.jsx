@@ -19,7 +19,7 @@ import PopupModal from "../components/PopupModal";
 import TermsCondition from "../components/form/TermsCondition";
 import SubmitBtn from "../components/form/SubmitBtn";
 
-const IndividualAccount = () => {
+const ClientUpdate = () => {
   const [open, setOpen] = useState(false);
 
   const {
@@ -147,7 +147,7 @@ const IndividualAccount = () => {
   return (
     <div className="mb-4">
       <div className="header bg-[#b41421] text-white p-3 mb-5">
-        <h1 className="text-xl font-bold px-3">OPEN AN INDIVIDUAL ACCOUNT</h1>
+        <h1 className="text-xl font-bold px-3">CLIENT UPDATE FORM</h1>
       </div>
       <div className="container mx-auto lg:w-4/6 bg-white">
         <div className="p-5">
@@ -188,4 +188,4 @@ const IndividualAccount = () => {
   );
 };
 
-export default IndividualAccount;
+export default ClientUpdate;
