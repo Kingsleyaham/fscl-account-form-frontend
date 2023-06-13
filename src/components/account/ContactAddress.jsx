@@ -2,7 +2,7 @@ const ContactAddress = ({ errors, register }) => {
   return (
     <div>
       <div className="bg-[#6d7275] text-white font-semibold py-2 px-3 text-xl">
-        <h1>Contact Detailsjoin</h1>
+        <h1>Contact Details</h1>
       </div>
       <div className="bg-white p-5 shadow-sm text-gray-900">
         <div className="mb-6 grid gap-6 md:grid-cols-2 mt-5">
