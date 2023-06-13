@@ -138,7 +138,7 @@ const ClientUpdate = () => {
       ...data,
       ...signatorySignatures,
       ...authorizedImg,
-      accountType: "individual",
+      accountType: "client update",
     };
 
     return formData;
